@@ -1,0 +1,63 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.5.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+}
+
+group = 'com'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+	mavenLocal()
+}
+
+ext {
+	commons = '3.6.1'
+	jackson = '2.10.1'
+	jasypt = '3.0.2'
+	springRetry = '1.2.5.RELEASE'
+	//springWeb = '2.2.5.RELEASE'
+	httpClient = '4.4.1'
+	gson = '2.8.6'
+    mySqlConnector = '8.0.18'
+    itext = '2.1.7'
+    olap4j = '1.2.0'
+    opencsv = '5.0'
+    poi = '4.1.1'
+    selenium = '3.141.5'
+    extentreports = '3.0.1'
+    sqljdbc = '7.2.2.jre11'
+    commonsIo = '2.6'
+    adal4j = '1.6.3'
+    testng = '7.0.0'
+}
+
+dependencies {
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter'
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-aop'
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc'
+	compile group: 'org.apache.commons', name: 'commons-math3', version: commons
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jackson
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: jackson
+    compile group: 'com.github.ulisesbocchio', name: 'jasypt-spring-boot-starter', version: jasypt
+    compile group: 'org.springframework.retry', name: 'spring-retry', version: springRetry
+    //compile group: 'org.springframework', name: 'spring-web', version: springWeb
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: httpClient
+   	compile group: 'com.google.code.gson', name: 'gson', version: gson
+	compile group: 'mysql', name: 'mysql-connector-java', version: mySqlConnector
+	compile group: 'com.lowagie', name: 'itext', version: itext
+	compile group: 'org.olap4j', name: 'olap4j', version: olap4j
+	compile group: 'com.opencsv', name: 'opencsv', version: opencsv
+	compile group: 'org.apache.poi', name: 'poi-ooxml', version: poi
+	compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: selenium
+	compile group: 'com.aventstack', name: 'extentreports', version: extentreports
+	compile group: 'com.microsoft.sqlserver', name: 'mssql-jdbc', version: sqljdbc
+	compile group: 'commons-io', name: 'commons-io', version: commonsIo
+	compile group: 'com.microsoft.azure', name: 'adal4j', version: adal4j
+	compile('com.oracle:ojdbc7:12.1.0.1')
+	
+	testCompile group: 'org.testng', name: 'testng', version: testng
+}

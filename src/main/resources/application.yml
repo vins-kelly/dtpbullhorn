@@ -1,0 +1,63 @@
+spring:
+  main:
+    spring.batch.job.enabled : false
+
+  output:
+    ansi:
+      enabled: DETECT
+      
+#  datasourceOracle:
+#    url: jdbc:oracle:thin:@localhost:1521/orcl
+#    username: system
+#    password: Temp2020
+  
+#  datasource :
+#    url : "jdbc:mysql://localhost:3306/kellyservices"
+#    username : "root"
+#    password : ENC (o7kIvBI4wDLI2kyluCzZDS7sOYE8W4JD)
+#    password : "Mysql@2019"
+    
+#  jasypt:
+#    encryptor:
+#     password: simplePassword   
+    
+#  kellytest:
+#    url: "jdbc:mysql://localhost:3306/kellytest"
+
+## client databases ##
+
+#  oracledatasource :
+#    url: jdbc:oracle:thin:@clust50scan.kelly.com:1521/ksnsqa.kelly.com
+#    username: AIMUSER
+#    password: AIMUSER
+#    driver-class-name: oracle.jdbc.OracleDriver
+
+#  datasource :
+#    url: jdbc:sqlserver://aimkellydev.database.windows.net;database=EdwSqa
+#    username: NEHK482@kellyservices.com
+#    password: Blueberries@90
+    
+  logging:
+  file: C:/Kelly Test Reports/LogFile/kelly.log
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+    file: "%d %-5level [%thread] %logger : %msg%n"
+  level:
+    com.kelly.*: INFO
+
+  datasource :
+     db-mssql :
+        jdbcUrl : jdbc:sqlserver://10.5.16.138\MDM_SQA:62004;database=MDMInbound
+        username : mdmsqa_readonly
+        password : "?8W3xjlbf6=:"
+     db-oracle :
+        jdbcUrl: jdbc:oracle:thin:@clust50scan.kelly.com:1521/ksnsqa.kelly.com
+        username: AIMUSER
+        password: AIMUSER
+     db-edw :
+        jdbcUrl : jdbc:sqlserver://aimkellydev.database.windows.net:1433;database=EdwSqa;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;authentication=ActiveDirectoryPassword
+        username : "srv-aim_edwtstrdev@kellyservices.com"
+        password : "!.9JeKvg*PLx"
+        
+  common :
+     pat : :2hogsyv4fer2zk657ktr3ouazdfuwejoti76tya6bgawkmhqrwzq      
