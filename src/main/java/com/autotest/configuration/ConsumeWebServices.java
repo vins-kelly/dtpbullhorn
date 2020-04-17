@@ -29,8 +29,10 @@ import org.springframework.retry.annotation.Retryable;
 import org.springframework.web.client.RestTemplate;
 
 import com.autotest.exception.KellyException;
+import com.autotest.model.ActionResult;
 import com.autotest.model.Attachment;
 import com.autotest.model.AzureResponse;
+import com.autotest.model.IterationDetail;
 import com.autotest.model.RunResult;
 import com.autotest.model.TempTestPoint;
 import com.autotest.model.TestCases;
@@ -125,10 +127,35 @@ public class ConsumeWebServices {
 		try {
 			final byte[] authBytes = yamlConfig.getPat().getBytes(UTF_8);
 			
+			ActionResult actionResult = new ActionResult();
+			actionResult.setActionPath("00000002");
+			actionResult.setIterationId(1);
+			actionResult.setOutcome("Passed");
+			
+			ActionResult actionResult2 = new ActionResult();
+			actionResult2.setActionPath("00000003");
+			actionResult2.setIterationId(1);
+			actionResult2.setOutcome("Passed");
+			
+			List<ActionResult> actionResults = new ArrayList<ActionResult>();
+			actionResults.add(actionResult);
+			actionResults.add(actionResult2);
+			
+			IterationDetail iterationDetail = new IterationDetail();
+			iterationDetail.setId(1);
+			iterationDetail.setOutcome("Passed");
+			iterationDetail.setErrorMessage("check");
+			iterationDetail.setActionResults(actionResults);
+			
+			List<IterationDetail> iterationDetails = new ArrayList<IterationDetail>();
+			iterationDetails.add(iterationDetail);
+			
 			WriteResult writeResult = new WriteResult();
 			writeResult.setId(100000);
 			writeResult.setState("Completed");
-			writeResult.setOutcome("Failed");
+			writeResult.setOutcome("Passed");
+			writeResult.setIterationDetails(iterationDetails);
+			writeResult.setUrl("https://dev.azure.com/kellyservices/DTPBullhorn Reporting/_apis/test/Runs/1004300");
 			
 			List<WriteResult> writeResults = new ArrayList<WriteResult>();
 			writeResults.add(writeResult);
@@ -140,7 +167,7 @@ public class ConsumeWebServices {
 			
 			HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory();
 			restTemplate = new RestTemplate(requestFactory);
-			return restTemplate.exchange("https://dev.azure.com/kellyservices/AIM/_apis/test/Runs/1004204/results?api-version=5.0-preview.5", PATCH, entity, RunResult.class).getBody();
+			return restTemplate.exchange(writeResult.getUrl() + "/results?api-version=5.0-preview.5", PATCH, entity, RunResult.class).getBody();
 		} catch (Exception e) {
 			LOG.error("--writeStatus() ", e.getMessage());
 			throw new KellyException(URL_FEATCH_EXCEPTION, e.getCause());

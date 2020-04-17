@@ -59,9 +59,9 @@ public class TestExecutorService {
 			String testSuitNumber = testSuitIDListIterator.next();
 
 			try {
-//				RunResult runResult = consumeWebServices.writeStatus();
+				RunResult runResult = consumeWebServices.writeStatus();
 //				String writeByPoints = consumeWebServices.writeStatusUsingTestPoint();
-				String writeAttachment = consumeWebServices.writeAttachment();
+//				String writeAttachment = consumeWebServices.writeAttachment();
 //				String test = consumeWebServices.getTestCaseIdString(testSuitNumber);
 				TestSuit testSuits = consumeWebServices.getTestCaseId(testSuitNumber);
 
